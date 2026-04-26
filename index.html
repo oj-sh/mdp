@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Environment Analyzer</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+<h1>🌿 Environment Analyzer</h1>
+
+<div class="container">
+
+    <!-- INPUT CARD -->
+    <div class="card input-card">
+        <h2>Enter Room Conditions</h2>
+
+        <label>👥 Number of People</label>
+        <input id="people" type="number" placeholder="e.g. 20">
+
+        <label>🌡 Temperature (°C)</label>
+        <input id="temp" type="number" placeholder="e.g. 24">
+
+        <label>🌬 Ventilation Level</label>
+        <select id="ventilation">
+            <option value="low">Low (closed room)</option>
+            <option value="medium">Medium (fan/windows)</option>
+            <option value="high">High (open/AC)</option>
+        </select>
+
+        <label>🌫 Air Quality</label>
+        <select id="air">
+            <option value="good">Good (fresh air)</option>
+            <option value="moderate">Moderate</option>
+            <option value="poor">Poor (stuffy/polluted)</option>
+        </select>
+
+        <button onclick="analyze()">Analyze Environment</button>
+    </div>
+
+    <!-- OUTPUT CARD -->
+    <div class="card output-card">
+        <h2>Analysis Results</h2>
+
+        <div class="metrics">
+            <div class="metric oxygen">
+                <p>Oxygen Level (%)</p>
+                <h3 id="oxygenValue">--</h3>
+            </div>
+
+            <div class="metric productivity">
+                <p>Productivity (%)</p>
+                <h3 id="productivityValue">--</h3>
+            </div>
+
+            <div class="metric risk" id="riskBox">
+                <p>Risk Level</p>
+                <h3 id="riskValue">--</h3>
+            </div>
+        </div>
+
+        <h3>Suggestions</h3>
+        <ul id="suggestions"></ul>
+    </div>
+
+</div>
+
+<h2>📊 Visualization</h2>
+<canvas id="chart"></canvas>
+
+<script src="/static/script.js"></script>
+
+</body>
+</html>

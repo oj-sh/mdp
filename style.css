@@ -1,0 +1,102 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: #0f172a;
+    color: white;
+    text-align: center;
+}
+
+h1 {
+    margin: 20px;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.card {
+    background: #1e293b;
+    padding: 25px;
+    border-radius: 16px;
+    width: 320px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+    text-align: left;
+}
+
+label {
+    display: block;
+    margin-top: 10px;
+    font-size: 14px;
+    color: #cbd5f5;
+}
+
+input, select {
+    width: 100%;
+    margin-top: 5px;
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    background: #334155;
+    color: white;
+}
+
+button {
+    width: 100%;
+    margin-top: 15px;
+    padding: 12px;
+    border-radius: 8px;
+    border: none;
+    background: #22c55e;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #16a34a;
+}
+
+.metrics {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+.metric {
+    width: 30%;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.oxygen {
+    background: #3b82f6;
+}
+
+.productivity {
+    background: #8b5cf6;
+}
+
+.risk {
+    background: #64748b;
+}
+
+#suggestions {
+    margin-top: 10px;
+    padding: 0;
+    list-style: none;
+}
+
+#suggestions li {
+    background: #334155;
+    margin: 5px 0;
+    padding: 8px;
+    border-radius: 6px;
+}
+
+canvas {
+    margin-top: 20px;
+    max-width: 600px;
+}
