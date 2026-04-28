@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Environment Analyzer</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<!-- ================= BACKGROUND LAYERS ================= -->
+<div id="blobLayer"></div>
+<div id="gradientLayer"></div>
+<canvas id="bgCanvas"></canvas>
+<canvas id="glowCanvas"></canvas>
+
+<!-- ================= MAIN CONTENT ================= -->
+<div class="page-wrapper">
+
+    <h1>🌿 Environment Analyzer</h1>
+
+    <div class="container">
+
+        <!-- INPUT CARD -->
+        <div class="card">
+            <h2>Enter Room Conditions</h2>
+
+            <label>👥 Number of People</label>
+            <input id="people" type="number">
+
+            <label>🌡 Temperature</label>
+            <input id="temp" type="number">
+
+            <label>Ventilation</label>
+            <select id="ventilation">
+                <option value="low">Low</option>
+                <option value="medium">Medium</option>
+                <option value="high">High</option>
+            </select>
+
+            <label>Air Quality</label>
+            <select id="air">
+                <option value="good">Good</option>
+                <option value="moderate">Moderate</option>
+                <option value="poor">Poor</option>
+            </select>
+
+            <button onclick="analyze()">Analyze</button>
+        </div>
+
+        <!-- OUTPUT CARD -->
+        <div class="card">
+            <h2>Results</h2>
+
+            <div class="metrics">
+                <div class="metric">
+                    <p>Oxygen</p>
+                    <h3 id="oxygenValue">--</h3>
+                </div>
+                <div class="metric">
+                    <p>Productivity</p>
+                    <h3 id="productivityValue">--</h3>
+                </div>
+                <div class="metric" id="riskBox">
+                    <p>Risk</p>
+                    <h3 id="riskValue">--</h3>
+                </div>
+                <div class="metric">
+                    <p>CO₂</p>
+                    <h3 id="co2Value">--</h3>
+                </div>
+                <div class="metric">
+                    <p>Comfort</p>
+                    <h3 id="comfortValue">--</h3>
+                </div>
+            </div>
+
+            <h3>Suggestions</h3>
+            <ul id="suggestions"></ul>
+        </div>
+
+    </div>
+
+    <!-- LIVE CHART -->
+    <h2>📊 Live Chart</h2>
+    <div class="chart-wrapper">
+        <canvas id="chart"></canvas>
+    </div>
+
+    <!-- ================= HISTORY SECTION ================= -->
+    <h2>📜 Analysis History</h2>
+    <div class="history-section">
+        <button onclick="loadHistory()" class="btn-secondary">🔄 Load History</button>
+        <div id="historyCards" class="history-grid"></div>
+    </div>
+
+    <!-- History Chart Modal -->
+    <div id="historyChartModal" class="modal" onclick="closeModal(event)">
+        <div class="modal-content">
+            <button class="modal-close" onclick="document.getElementById('historyChartModal').style.display='none'">✕</button>
+            <h3 id="modalTitle">History Chart</h3>
+            <div class="modal-meta" id="modalMeta"></div>
+            <canvas id="historyChart"></canvas>
+        </div>
+    </div>
+
+</div><!-- end page-wrapper -->
+
+<script src="/static/script.js"></script>
+<button onclick="loadHistory()" class="btn-secondary">🔄 Load History</button>
+<button onclick="clearAllHistory()" class="btn-danger">🗑 Clear All</button>
+<!-- ✨ GLOWING CURSOR -->
+<div id="cursor-dot"></div>
+<div id="cursor-glow"></div>
+
+<style>
+#cursor-dot {
+    position: fixed;
+    width: 10px; height: 10px;
+    background: white;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: transform 0.08s ease, background 0.3s;
+    box-shadow: 0 0 8px 3px rgba(139,92,246,0.9);
+}
+
+#cursor-glow {
+    position: fixed;
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9998;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle, rgba(139,92,246,0.35) 0%, transparent 70%);
+    transition: transform 0.18s ease, width 0.3s, height 0.3s, opacity 0.3s;
+    filter: blur(4px);
+}
+</style>
+
+<script>
+const dot  = document.getElementById("cursor-dot");
+const glow = document.getElementById("cursor-glow");
+
+let mouseX = 0, mouseY = 0;
+let glowX  = 0, glowY  = 0;
+
+document.addEventListener("mousemove", e => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+    dot.style.left = mouseX + "px";
+    dot.style.top  = mouseY + "px";
+});
+
+// Glow follows with a slight lag
+function animateGlow() {
+    glowX += (mouseX - glowX) * 0.12;
+    glowY += (mouseY - glowY) * 0.12;
+    glow.style.left = glowX + "px";
+    glow.style.top  = glowY + "px";
+    requestAnimationFrame(animateGlow);
+}
+animateGlow();
+
+// Expand on hover over interactive elements
+document.querySelectorAll("button, input, select, .history-card, .metric").forEach(el => {
+    el.addEventListener("mouseenter", () => {
+        dot.style.transform  = "translate(-50%, -50%) scale(1.8)";
+        dot.style.background = "#a78bfa";
+        glow.style.width     = "80px";
+        glow.style.height    = "80px";
+        glow.style.opacity   = "1";
+    });
+    el.addEventListener("mouseleave", () => {
+        dot.style.transform  = "translate(-50%, -50%) scale(1)";
+        dot.style.background = "white";
+        glow.style.width     = "40px";
+        glow.style.height    = "40px";
+        glow.style.opacity   = "0.8";
+    });
+});
+</script>
+</body>
+</html>

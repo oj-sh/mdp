@@ -1,0 +1,312 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: #020617;
+    color: white;
+    text-align: center;
+}
+
+/* HERO */
+.hero {
+    padding: 100px 20px;
+}
+
+.hero h1 {
+    font-size: 3rem;
+}
+
+.hero p {
+    margin: 20px 0;
+    font-size: 1.2rem;
+}
+/* ================= PREMIUM BUTTON ================= */
+button {
+    padding: 14px 30px;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    color: white;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+
+    background: linear-gradient(270deg, #3b82f6, #8b5cf6, #10b981);
+    background-size: 300% 300%;
+    animation: btnMove 5s linear infinite;
+
+    transition: all 0.3s ease;
+}
+
+/* gradient animation */
+@keyframes btnMove {
+    0% { background-position: 0% }
+    100% { background-position: 100% }
+}
+
+/* hover pop + glow */
+button:hover {
+    transform: scale(1.08);
+
+    box-shadow:
+        0 0 20px rgba(59,130,246,0.7),
+        0 0 40px rgba(139,92,246,0.5),
+        0 0 60px rgba(17, 218, 151, 0.4);
+}
+
+/* click effect */
+button:active {
+    transform: scale(0.95);
+}
+
+/* SECTIONS */
+section {
+    padding: 60px 20px;
+}
+
+/* GRID 3 */
+.grid-3 {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.card {
+    width: 280px;
+    padding: 20px;
+    background: #1e293b;
+    border-radius: 15px;
+}
+
+/* GRID 4 */
+.grid-4 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+}
+
+.box {
+    background: #1e293b;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+/* ABOUT */
+.about {
+    max-width: 800px;
+    margin: auto;
+}
+
+/* CTA */
+.cta {
+    background: #0f172a;
+}
+/* ================= BACKGROUND LAYER 1 (GRADIENT) ================= */
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    color: white;
+    overflow-x: hidden;
+
+    background: linear-gradient(270deg, #020617, #0f172a, #1e293b);
+    background-size: 400% 400%;
+    animation: gradientMove 15s ease infinite;
+}
+
+@keyframes gradientMove {
+    0% { background-position: 0% }
+    50% { background-position: 100% }
+    100% { background-position: 0% }
+}
+
+
+/* ================= BLOB LAYER ================= */
+body::before {
+    content: "";
+    position: fixed;
+    width: 500px;
+    height: 500px;
+    background: #3b82f6;
+    filter: blur(120px);
+    border-radius: 50%;
+    top: 20%;
+    left: 10%;
+    opacity: 0.5;
+    animation: blobMove 12s infinite alternate;
+    z-index: 0;
+}
+
+@keyframes blobMove {
+    0% { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(200px, 150px) scale(1.3); }
+}
+
+
+/* ================= CANVAS ================= */
+#bgCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+}
+
+
+/* ================= HERO LAYOUT ================= */
+.hero {
+    position: relative;
+    padding: 100px 10%;
+    z-index: 2;
+}
+
+.hero-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+.hero-text {
+    max-width: 500px;
+}
+
+.hero-text h1 {
+    font-size: 3rem;
+}
+
+.hero-text p {
+    margin: 20px 0;
+    font-size: 1.2rem;
+}
+
+.hero-image img {
+    width: 400px;
+    border-radius: 20px;
+}
+
+
+/* BUTTON */
+button {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 10px;
+    background: #3b82f6;
+    color: white;
+    cursor: pointer;
+}
+/* ================= GRADIENT BORDER ================= */
+.gradient-border {
+    position: relative;
+    border-radius: 16px;
+    padding: 2px; /* thickness of border */
+
+    background: linear-gradient(
+    270deg,
+    #3b82f6,
+    #8b5cf6,
+    #10b981,
+    #3b82f6
+);
+background-size: 400% 400%;
+animation: borderMove 6s linear infinite;
+
+@keyframes borderMove {
+    0% { background-position: 0% }
+    100% { background-position: 100% }
+}
+}
+
+.gradient-border::before {
+    content: "";
+    position: absolute;
+    inset: 2px; /* creates inner gap (double line effect) */
+    border-radius: 14px;
+    background: #020617; /* same as bg */
+    z-index: 0;
+}
+
+.gradient-border > * {
+    position: relative;
+    z-index: 1;
+}
+.inner {
+    padding: 40px;
+}
+/* ================= HOVER EFFECT ================= */
+
+.gradient-border {
+    transition: all 0.3s ease;
+}
+
+.gradient-border:hover {
+    transform: translateY(-8px) scale(1.02);
+
+    box-shadow:
+        0 0 20px rgba(59,130,246,0.6),
+        0 0 40px rgba(139,92,246,0.4),
+        0 0 60px rgba(16,185,129,0.3);
+}
+.card:hover {
+    transform: translateY(-10px) scale(1.03);
+
+    box-shadow:
+        0 15px 40px rgba(0,0,0,0.5),
+        0 0 25px rgba(59,130,246,0.6);
+}
+section {
+    animation: fadeUp 1s ease;
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.hero-image img {
+    width: 400px;
+    border-radius: 20px;
+    object-fit: cover;
+
+    transition: 0.4s;
+}
+
+/* hover zoom */
+.hero-image:hover img {
+    transform: scale(1.05);
+}
+.hero-image {
+    padding: 10px;
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+}
+.big-img {
+    width: 550px;   /* increase size */
+}
+.hero-image {
+    width: 450px;
+}
+
+
+.hero-image.big {
+    width: 500px;
+}
+.hero-image img {
+    width: 100%;
+    max-width: 500px;
+}
+.big-img {
+    max-width: 650px;
+}
+.hero-content {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap; /* allows multiple images */
+}
